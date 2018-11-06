@@ -47,7 +47,26 @@ namespace XMLPractice
             {
                 Console.WriteLine("Rate changes Successfully");
             }
-            
+
+            Console.WriteLine("--------------- XML Serializarion ---------------");
+            Console.ReadLine();
+
+            Serializer ser = new Serializer();
+            string path = string.Empty;
+            string xmlInputData = string.Empty;
+            string xmlOutputData = string.Empty;
+
+            // EXAMPLE 1
+            //path = Directory.GetCurrentDirectory() + @"\Customer.xml";
+            path = @"d:\Users\fowzis\Documents\Coding\VSProjects\C#\XMLPractice\XMLPractice\Customer.xml";
+            xmlInputData = File.ReadAllText(path);
+
+            Customer customer = ser.Deserialize<Customer>(xmlInputData);
+            xmlOutputData = ser.Serialize<Customer>(customer);
+            Console.WriteLine(xmlOutputData);
+
+            ser.SaveXML2File(@"d:\temp\customerFoz.xml", ref xmlOutputData);
+
             Console.WriteLine("Press Any Key to exit.");
             Console.ReadLine();
         }
